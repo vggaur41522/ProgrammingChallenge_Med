@@ -121,10 +121,11 @@ public class ProblemLL<T> {
 		
 		ProblemLL<Integer> pbSingle1 = new ProblemLL<>(false);
 		ProblemLL<Integer> pbSingle2 = new ProblemLL<>(false);
-		pbSingle1.insertFromArray(new int[] { 5,4,3,2,1});
+		pbSingle1.insertFromArray(new int[] { 11,12,13,14,15,5,4,3,2,1});
 		pbSingle2.insertFromArray(new int[] { 5,4,3,10 });
 		ProblemLL<Integer> pb = new ProblemLL<>(false);
 		System.out.println("Intersection :"+pb.findIntersection(pbSingle1.head, pbSingle2.head));
+		System.out.println("\nKth from the last:"+pb.kthFromLastinLL(pbSingle1.head,6));
 	}
 	public int findLen(Node node)
 	{
@@ -138,9 +139,27 @@ public class ProblemLL<T> {
 		}
 		return count;
 	}
+	
+	public int kthFromLastinLL(Node<Integer> node, int k)
+	{
+		Node<Integer> fast = node;
+		Node<Integer> slow = node;
+		for(int i=0;i<k-1;i++)
+		{
+			if(fast.next == null)
+				return -1;
+			fast = fast.next;
+		}
+		while( fast.next != null)
+		{
+			slow = slow.next;
+			fast = fast.next;
+		}
+		return slow.data;
+	}
 	public int findIntersectionUtil(Node<Integer> n1, Node<Integer> n2, int l1, int l2)
 	{
-		// Move L1
+		// Move L1 to an extent so that it will in sync with n2
 		for(int i=0;i < l1-l2;i++)
 		{
 			if(n1 == null)
