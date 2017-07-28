@@ -6,7 +6,7 @@ public class ProblemLL<T> {
 	private Node head = null;
 	private Node tail = null;
 
-	class Node<T> {
+	protected class Node<T> {
 		T data;
 		Node next;
 		Node prev;
@@ -117,6 +117,53 @@ public class ProblemLL<T> {
 		/* Now that we have our LinkedList Ready. Lets do some diff problems */
 		System.out.println("");
 		pbSingInt.printLL(pbSingInt.reverseLL(pbSingInt.head));
+		
+		
+		ProblemLL<Integer> pbSingle1 = new ProblemLL<>(false);
+		ProblemLL<Integer> pbSingle2 = new ProblemLL<>(false);
+		pbSingle1.insertFromArray(new int[] { 5,4,3,2,1});
+		pbSingle2.insertFromArray(new int[] { 5,4,3,10 });
+		ProblemLL<Integer> pb = new ProblemLL<>(false);
+		System.out.println("Intersection :"+pb.findIntersection(pbSingle1.head, pbSingle2.head));
+	}
+	public int findLen(Node node)
+	{
+		if(node == null)
+			return 0;
+		int count = 0;
+		while(node != null)
+		{
+			count++;
+			node = node.next;
+		}
+		return count;
+	}
+	public int findIntersectionUtil(Node<Integer> n1, Node<Integer> n2, int l1, int l2)
+	{
+		// Move L1
+		for(int i=0;i < l1-l2;i++)
+		{
+			if(n1 == null)
+				return -1;
+			n1 = n1.next;
+		}
+		while(n1 != null && n2 != null)
+		{
+			if(n1.data == n2.data)
+				return n1.data;
+			n1 = n1.next;
+			n2 = n2.next;
+		}
+		return -1;
+	}
+	public int findIntersection(Node head1, Node head2)
+	{
+		if(head1 == null ||  head2 == null)
+			return -1;
+		
+		int len1 = findLen(head1);
+		int len2 = findLen(head2);
+		return (len1 > len2)?findIntersectionUtil(head1, head2,len1,len2) :findIntersectionUtil(head2, head1,len2,len1); 
 	}
 	public Node reverseLL(Node node)
 	{
