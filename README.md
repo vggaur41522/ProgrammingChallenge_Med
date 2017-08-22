@@ -15,7 +15,13 @@
            <pre>
               1. LRU Cache using Linked List and HashMap
               2. General Reversal, Insertion, Deletion
-              3. Remove Nth node from last ....
+              3. Remove Nth node from last  >>> TO DO BELOW 
+              4. Merge K Sorted List 
+              5. Intersection of 2 LL
+              6. Sort list  (Merge Sort)
+              7. Delete a Node ... 
+              8. ....
+        
            </pre>
 </details>
         
